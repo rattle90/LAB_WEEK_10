@@ -15,7 +15,6 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate layout untuk fragment ini
         return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
@@ -25,7 +24,6 @@ class FirstFragment : Fragment() {
     }
 
     private fun updateText(total: Int) {
-        // Gunakan view?.findViewById karena kita di dalam Fragment
         view?.findViewById<TextView>(R.id.text_total)?.text =
             getString(R.string.text_total, total)
     }
@@ -34,11 +32,7 @@ class FirstFragment : Fragment() {
         val viewModel =
             ViewModelProvider(requireActivity())[TotalViewModel::class.java]
 
-        // 1. Observe LiveData
-        //    Gunakan 'viewLifecycleOwner' di Fragment
         viewModel.total.observe(viewLifecycleOwner) { total ->
-            // 2. Setiap kali nilai 'total' berubah,
-            //    kode ini akan dijalankan.
             updateText(total)
         }
     }
